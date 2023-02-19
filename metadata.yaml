@@ -1,0 +1,26 @@
+name: omec-webui-operator
+display-name: 5G OMEC Webui operator
+summary: 5G OMEC Webui operator
+description: 5G OMEC Webui operator
+
+containers:
+  webui:
+    resource: webui-image
+    mounts:
+      - storage: config
+        location: /etc/webui/
+
+resources:
+  webui-image:
+    type: oci-image
+    description: OCI image for 5G omec-webui
+    upstream-source: omecproject/5gc-webui:master-1121545
+
+storage:
+  config:
+    type: filesystem
+    minimum-size: 1M
+
+requires:
+  database:
+    interface: mongodb_client
