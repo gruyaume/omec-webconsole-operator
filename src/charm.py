@@ -31,7 +31,7 @@ class WebuiOperatorCharm(CharmBase):
         self._container_name = self._service_name = "webui"
         self._container = self.unit.get_container(self._container_name)
         self._database = DatabaseRequires(
-            self, relation_name="database", database_name=DATABASE_NAME
+            self, relation_name="database", database_name=DATABASE_NAME, extra_user_roles="admin"
         )
         self.framework.observe(self.on.webui_pebble_ready, self._on_webui_pebble_ready)
         self.framework.observe(self.on.database_relation_joined, self._on_webui_pebble_ready)
